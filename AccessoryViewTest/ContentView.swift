@@ -5,21 +5,31 @@
 //
 //    Copyright © 2025 Eidria Inc. All rights reserved.
 
-
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(AppDataModel.self) var dataModel
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            GroupBox(label: Text("Accessory View")) {
+                DialogAccessoryView(viewModel: .init(dataModel: dataModel))
+            }
+            .padding(.bottom, 20)
+
+            Button {
+                DialogManager(dataModel: dataModel).showDialog()
+            } label: {
+                Text("Show NSOpen panel containing accessory view")
+            }
+            .buttonStyle(.bordered)
+
         }
-        .padding()
+        .padding(20)
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//        .environment(AppDataModel())
+//}

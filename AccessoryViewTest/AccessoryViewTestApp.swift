@@ -7,12 +7,22 @@
 
 
 import SwiftUI
+import Foundation
 
 @main
 struct AccessoryViewTestApp: App {
+    var dataModel = AppDataModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(dataModel)
         }
     }
 }
+
+extension String: @retroactive Error {}
+extension String: @retroactive LocalizedError {
+    public var errorDescription: String? { return self }
+}
+
