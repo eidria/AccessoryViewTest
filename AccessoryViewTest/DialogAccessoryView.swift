@@ -14,8 +14,10 @@ public struct DialogAccessoryView: View {
         VStack {
             textField
 
-            checkbox
-            
+            switchToggle
+
+            checkboxToggle
+
             button
                 .background(Color.clear)
 
@@ -48,10 +50,17 @@ public struct DialogAccessoryView: View {
         }
     }
 
-    public var checkbox: some View {
+    public var checkboxToggle: some View {
         @Bindable var viewModel = viewModel
         return Toggle("Model enabled", isOn: $viewModel.isEnabled)
             .toggleStyle(.checkbox)
+            .fixedSize()
+    }
+
+    public var switchToggle: some View {
+        @Bindable var viewModel = viewModel
+        return Toggle("Model enabled", isOn: $viewModel.isEnabled)
+            .toggleStyle(.switch)
             .fixedSize()
     }
 
